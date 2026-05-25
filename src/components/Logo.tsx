@@ -6,7 +6,7 @@ interface LogoProps {
 
 export default function Logo({ size = 'md', showTagline = true, variant = 'dark' }: LogoProps) {
   const iconSize = size === 'sm' ? 'w-8 h-8' : size === 'lg' ? 'w-12 h-12' : 'w-10 h-10';
-  const titleSize = size === 'sm' ? 'text-lg' : size === 'lg' ? 'text-2xl' : 'text-xl';
+  const titleSize = size === 'sm' ? 'text-base' : size === 'lg' ? 'text-2xl' : 'text-lg sm:text-xl';
   const textColor = variant === 'light' ? 'text-white' : 'text-ink';
   const tagColor = variant === 'light' ? 'text-mint-200' : 'text-mint-600';
 
@@ -20,8 +20,8 @@ export default function Logo({ size = 'md', showTagline = true, variant = 'dark'
         </svg>
       </div>
       <div className="flex flex-col">
-        <span className={`${titleSize} font-display ${textColor} leading-none tracking-tight`}>
-          Smilly Face
+        <span className={`${titleSize} font-display ${textColor} leading-tight tracking-tight`}>
+          smileyfacealigner
         </span>
         {showTagline && (
           <span className={`text-[10px] uppercase font-semibold ${tagColor} tracking-[0.2em] mt-1`}>

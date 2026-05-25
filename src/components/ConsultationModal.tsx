@@ -67,19 +67,13 @@ export default function ConsultationModal({ isOpen, onClose }: ConsultationModal
             </button>
           </div>
         ) : (
-          <form
-            onSubmit={(e) => {
-              e.preventDefault();
-              setFinished(true);
-            }}
-            className="p-6 md:p-8 space-y-6"
-          >
+          <div className="p-6 md:p-8 space-y-6">
             <div className="flex items-center gap-3 pr-10">
               <div className="w-10 h-10 rounded-xl bg-mint-100 flex items-center justify-center">
                 <Calendar className="w-5 h-5 text-mint-600" />
               </div>
               <div>
-                <h3 className="text-xl font-display text-ink">Book Your Free Scan</h3>
+                <h3 className="text-xl font-display text-ink">Request an appointment</h3>
                 <p className="text-xs text-ink-muted">3D diagnostic session at our Lahore clinic</p>
               </div>
             </div>
@@ -153,14 +147,7 @@ export default function ConsultationModal({ isOpen, onClose }: ConsultationModal
                 />
               </div>
             </div>
-
-            <button
-              type="submit"
-              className="w-full bg-gradient-to-r from-mint-500 to-mint-600 text-white py-4 rounded-2xl font-semibold shadow-lg shadow-mint-500/20 hover:shadow-mint-500/30 transition-all active:scale-[0.98]"
-            >
-              Confirm Booking
-            </button>
-          </form>
+          </div>
         )}
       </motion.div>
     </div>

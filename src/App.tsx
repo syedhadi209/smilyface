@@ -2,7 +2,6 @@ import { useState } from 'react';
 import {
   CheckCircle2,
   Sparkles,
-  Smartphone,
   Award,
   Zap,
   Camera,
@@ -18,13 +17,13 @@ import OrthodonticSolutions from './components/OrthodonticSolutions';
 import ConsultationModal from './components/ConsultationModal';
 import CaseSubmissionForm from './components/CaseSubmissionForm';
 import TreatableCases from './components/TreatableCases';
+import PricingSection from './components/PricingSection';
 import TiltCard from './components/TiltCard';
 
 const benefits = [
-  { icon: Sparkles, title: 'Virtually Invisible', desc: 'SmillyClear™ high-clarity material disappears in everyday conversations.', color: 'bg-mint-50 text-mint-600' },
+  { icon: Sparkles, title: 'Virtually Invisible', desc: 'SmileyClear™ high-clarity material disappears in everyday conversations.', color: 'bg-mint-50 text-mint-600' },
   { icon: Award, title: 'Expert Oversight', desc: 'Every plan is designed, approved, and monitored by licensed orthodontic specialists.', color: 'bg-sky-50 text-sky-600' },
   { icon: CheckCircle2, title: 'Lifestyle Freedom', desc: 'Remove aligners for meals, events, and photos. Oral hygiene stays simple.', color: 'bg-emerald-50 text-emerald-600' },
-  { icon: Smartphone, title: 'Remote Tracking', desc: 'Share progress from your phone — fewer clinic visits, same expert care.', color: 'bg-violet-50 text-violet-600' },
 ];
 
 const steps = [
@@ -33,45 +32,11 @@ const steps = [
   { num: '03', title: 'Wear & Progress', desc: '22 hours daily. Swap sets on schedule and track milestones from your device.' },
 ];
 
-const pricingPlans = [
-  {
-    tag: 'Mild cases',
-    name: 'Express',
-    price: '$1,299',
-    sub: 'From $99/mo · 0% APR',
-    desc: 'Minor spacing, aesthetic alignment, or mild post-treatment shifts.',
-    features: ['Up to 12 aligner trays', '3D treatment preview', 'Satisfaction guarantee'],
-    cta: 'Get started',
-    featured: false,
-  },
-  {
-    tag: 'Most popular',
-    name: 'Complete Smile',
-    price: '$1,850',
-    sub: 'From $149/mo · 0% APR',
-    desc: 'Full bite correction — crowding, spacing, and depth simultaneously.',
-    features: ['Full aligner series', 'Specialist oversight', 'Retainers included', 'Free replacements'],
-    cta: 'Book free consultation',
-    featured: true,
-  },
-  {
-    tag: 'For clinics',
-    name: 'CAD Integration',
-    price: '$599',
-    sub: 'Per diagnostic export',
-    desc: 'For practices managing intraoral STL data in-house.',
-    features: ['24-hour digital blueprint', 'Clinical sheets download', 'Movement logs'],
-    cta: 'Upload STL file',
-    featured: false,
-    link: '#submit',
-  },
-];
-
 const testimonials = [
-  { name: 'Sarah J.', city: 'Lahore', quote: 'I previewed my smile transformation step-by-step before receiving trays. Six months later, my confidence has completely changed.', avatar: 'https://i.pravatar.cc/150?u=sarah1' },
-  { name: 'Mark T.', city: 'Islamabad', quote: 'The laser scan was quick and painless. A modern alternative to braces — I recommend it to everyone.', avatar: 'https://i.pravatar.cc/150?u=mark1' },
-  { name: 'Elena R.', city: 'Karachi', quote: 'I remove them for presentations and nobody notices. The Express plan was absolutely worth it.', avatar: 'https://i.pravatar.cc/150?u=elena1' },
-  { name: 'David K.', city: 'Faisalabad', quote: 'Remote monitoring streamlined my check-ups. Transparent pricing and incredible support.', avatar: 'https://i.pravatar.cc/150?u=david1' },
+  { name: 'Sarah J.', city: 'Los Angeles, CA', quote: 'I previewed my smile transformation step-by-step before receiving trays. Six months later, my confidence has completely changed.', avatar: 'https://i.pravatar.cc/150?u=sarah1' },
+  { name: 'Mark T.', city: 'Austin, TX', quote: 'The laser scan was quick and painless. A modern alternative to braces — I recommend it to everyone.', avatar: 'https://i.pravatar.cc/150?u=mark1' },
+  { name: 'Elena R.', city: 'New York, NY', quote: 'I remove them for presentations and nobody notices. The Express plan was absolutely worth it.', avatar: 'https://i.pravatar.cc/150?u=elena1' },
+  { name: 'David K.', city: 'Miami, FL', quote: 'Remote monitoring streamlined my check-ups. Transparent pricing and incredible support.', avatar: 'https://i.pravatar.cc/150?u=david1' },
 ];
 
 export default function App() {
@@ -95,11 +60,11 @@ export default function App() {
       {/* Benefits */}
       <section id="benefits" className="py-24 bg-white">
         <div className="max-w-7xl mx-auto px-6">
-          <SectionHeading badge="Why Smilly Face" centered subtitle="Invisible aligners designed for real life — not just straight teeth.">
+          <SectionHeading badge="Why smileyfacealigner" centered subtitle="Invisible aligners designed for real life — not just straight teeth.">
             The smarter way to straighten
           </SectionHeading>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {benefits.map(({ icon: Icon, title, desc, color }, idx) => (
               <motion.div
                 key={title}
@@ -229,88 +194,12 @@ export default function App() {
         </div>
       </section>
 
-      {/* Pricing */}
-      <section id="pricing" className="py-24 bg-white">
-        <div className="max-w-7xl mx-auto px-6">
-          <SectionHeading badge="Investment" centered subtitle="Premium clear aligners without traditional markup — honest pricing for patients and clinics.">
-            Transparent treatment pricing
-          </SectionHeading>
-
-          <div className="grid md:grid-cols-3 gap-6 lg:gap-8">
-            {pricingPlans.map((plan, idx) => (
-              <motion.div
-                key={plan.name}
-                initial={{ opacity: 0, y: 28 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: idx * 0.1, duration: 0.6 }}
-                className={plan.featured ? 'md:-mt-4 md:mb-4' : ''}
-              >
-                <TiltCard className="h-full" hoverScale={plan.featured ? 1.02 : 1.015}>
-                  <div
-                    className={`h-full p-8 rounded-3xl flex flex-col ${
-                      plan.featured
-                        ? 'bg-gradient-to-br from-ink to-slate-800 text-white shadow-2xl shadow-ink/20 border border-mint-500/20'
-                        : 'bg-white border border-slate-100 hover:border-mint-200 hover:shadow-xl hover:shadow-mint-500/5 transition-all'
-                    }`}
-                  >
-                    {plan.featured && (
-                      <span className="self-start text-[10px] font-semibold uppercase tracking-widest bg-mint-500 text-white px-3 py-1 rounded-full mb-4">
-                        {plan.tag}
-                      </span>
-                    )}
-                    {!plan.featured && (
-                      <span className="text-[10px] font-semibold text-ink-muted uppercase tracking-widest mb-2">{plan.tag}</span>
-                    )}
-                    <h4 className={`text-2xl font-display mb-2 ${plan.featured ? 'text-white' : 'text-ink'}`}>{plan.name}</h4>
-                    <p className={`text-xs mb-6 leading-relaxed ${plan.featured ? 'text-white/60' : 'text-ink-muted'}`}>{plan.desc}</p>
-                    <div className={`py-5 mb-6 border-y ${plan.featured ? 'border-white/10' : 'border-slate-100'}`}>
-                      <span className={`text-4xl font-display ${plan.featured ? 'text-mint-300' : 'text-ink'}`}>{plan.price}</span>
-                      <span className={`text-xs block mt-1 ${plan.featured ? 'text-white/50' : 'text-ink-muted'}`}>{plan.sub}</span>
-                    </div>
-                    <ul className="space-y-3 mb-8 flex-1">
-                      {plan.features.map((f) => (
-                        <li key={f} className={`flex items-center gap-2 text-xs font-medium ${plan.featured ? 'text-white/80' : 'text-ink-muted'}`}>
-                          <CheckCircle2 size={14} className="text-mint-500 shrink-0" />
-                          {f}
-                        </li>
-                      ))}
-                    </ul>
-                    {plan.link ? (
-                      <a
-                        href={plan.link}
-                        className={`w-full text-center py-3.5 rounded-2xl font-semibold text-sm transition-all ${
-                          plan.featured
-                            ? 'bg-mint-500 hover:bg-mint-400 text-white'
-                            : 'bg-mint-50 text-mint-700 hover:bg-mint-100 border border-mint-200'
-                        }`}
-                      >
-                        {plan.cta}
-                      </a>
-                    ) : (
-                      <button
-                        onClick={() => setShowAppointment(true)}
-                        className={`w-full py-3.5 rounded-2xl font-semibold text-sm transition-all active:scale-[0.98] ${
-                          plan.featured
-                            ? 'bg-mint-500 hover:bg-mint-400 text-white shadow-lg shadow-mint-500/25'
-                            : 'bg-ink hover:bg-ink/90 text-white'
-                        }`}
-                      >
-                        {plan.cta}
-                      </button>
-                    )}
-                  </div>
-                </TiltCard>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
+      <PricingSection />
 
       {/* Case submission */}
       <section id="submit" className="py-24 bg-mint-50/40 border-y border-mint-100/60">
         <div className="max-w-7xl mx-auto px-6">
-          <SectionHeading badge="For clinics" centered subtitle="Upload 3D STL scans or patient photos for a diagnostic evaluation within 24 hours.">
+          <SectionHeading badge="For clinics" centered subtitle="Share case details and a public STL file link — our team will prepare a diagnostic evaluation within 24 hours.">
             Submit a clinical case
           </SectionHeading>
           <CaseSubmissionForm />
@@ -320,7 +209,7 @@ export default function App() {
       {/* Testimonials */}
       <section id="testimonials" className="py-24 bg-white">
         <div className="max-w-7xl mx-auto px-6">
-          <SectionHeading badge="Patient stories" centered subtitle="Real transformations from patients across Pakistan.">
+          <SectionHeading badge="Patient stories" centered subtitle="Real transformations from patients across the United States.">
             Loved by thousands of smiles
           </SectionHeading>
 

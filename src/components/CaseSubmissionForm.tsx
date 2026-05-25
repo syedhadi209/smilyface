@@ -1,5 +1,5 @@
-import { useState, type DragEvent, type FormEvent } from 'react';
-import { CheckCircle2, Upload } from 'lucide-react';
+import { useState, type FormEvent } from 'react';
+import { CheckCircle2 } from 'lucide-react';
 import { motion } from 'motion/react';
 
 export default function CaseSubmissionForm() {
@@ -8,28 +8,12 @@ export default function CaseSubmissionForm() {
     clinicEmail: '',
     patientName: '',
     caseType: 'Crowding',
+    stlFileUrl: '',
     customNotes: '',
   });
-  const [dragActive, setDragActive] = useState(false);
-  const [uploadedFiles, setUploadedFiles] = useState<File[]>([]);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitPercent, setSubmitPercent] = useState(0);
   const [success, setSuccess] = useState(false);
-
-  const handleDrag = (e: DragEvent) => {
-    e.preventDefault();
-    e.stopPropagation();
-    setDragActive(e.type === 'dragenter' || e.type === 'dragover');
-  };
-
-  const handleDrop = (e: DragEvent) => {
-    e.preventDefault();
-    e.stopPropagation();
-    setDragActive(false);
-    if (e.dataTransfer.files?.[0]) {
-      setUploadedFiles((prev) => [...prev, ...Array.from(e.dataTransfer.files)]);
-    }
-  };
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
@@ -53,6 +37,19 @@ export default function CaseSubmissionForm() {
     'w-full px-4 py-3 rounded-xl border border-slate-200 outline-none text-sm focus:border-mint-400 focus:ring-2 focus:ring-mint-100 transition-all';
   const labelClass = 'block text-[11px] font-semibold text-ink uppercase tracking-wider mb-2';
 
+  const resetForm = () => {
+    setSuccess(false);
+    setFormData({
+      dentistName: '',
+      clinicEmail: '',
+      patientName: '',
+      caseType: 'Crowding',
+      stlFileUrl: '',
+      customNotes: '',
+    });
+    setSubmitPercent(0);
+  };
+
   return (
     <div className="bg-white p-8 md:p-12 rounded-3xl shadow-xl shadow-mint-500/5 border border-mint-100/80 max-w-4xl mx-auto">
       {success ? (
@@ -62,15 +59,10 @@ export default function CaseSubmissionForm() {
           </div>
           <h3 className="text-3xl font-display text-ink mb-3">Case submitted</h3>
           <p className="text-ink-muted max-w-md mx-auto mb-8 text-sm">
-            Our clinicians are reviewing your scan. Expect a customized treatment plan within 24 hours.
+            Our team is reviewing your details. Expect a customized treatment plan within 24 hours.
           </p>
           <button
-            onClick={() => {
-              setSuccess(false);
-              setUploadedFiles([]);
-              setFormData({ dentistName: '', clinicEmail: '', patientName: '', caseType: 'Crowding', customNotes: '' });
-              setSubmitPercent(0);
-            }}
+            onClick={resetForm}
             className="bg-mint-500 hover:bg-mint-600 text-white px-8 py-3 rounded-2xl font-semibold transition-colors"
           >
             Submit another case
@@ -132,42 +124,17 @@ export default function CaseSubmissionForm() {
           </div>
 
           <div>
-            <label className={labelClass}>Upload STL scans or photos</label>
-            <div
-              onDragEnter={handleDrag}
-              onDragOver={handleDrag}
-              onDragLeave={handleDrag}
-              onDrop={handleDrop}
-              className={`border-2 border-dashed rounded-2xl p-10 text-center transition-all ${
-                dragActive ? 'border-mint-400 bg-mint-50' : 'border-slate-200 bg-slate-50/50'
-              }`}
-            >
-              <Upload className="mx-auto w-10 h-10 text-mint-400 mb-4" />
-              <p className="text-sm font-semibold text-ink mb-1">Drag & drop files here</p>
-              <p className="text-xs text-ink-muted mb-4">.stl, .ply, .jpeg, .png — up to 25MB</p>
-              <input id="file-selector" type="file" multiple className="hidden" onChange={(e) => {
-                if (e.target.files?.[0]) setUploadedFiles((prev) => [...prev, ...Array.from(e.target.files!)]);
-              }} />
-              <button
-                type="button"
-                onClick={() => document.getElementById('file-selector')?.click()}
-                className="bg-white px-5 py-2 rounded-xl border border-slate-200 text-xs font-semibold hover:bg-mint-50 transition-colors"
-              >
-                Browse files
-              </button>
-            </div>
-            {uploadedFiles.length > 0 && (
-              <div className="mt-4 p-4 bg-mint-50/50 rounded-xl space-y-2 border border-mint-100">
-                {uploadedFiles.map((file, idx) => (
-                  <div key={idx} className="flex items-center justify-between bg-white px-3 py-2 rounded-lg text-xs">
-                    <span className="truncate text-ink-muted font-mono">{file.name}</span>
-                    <button type="button" onClick={() => setUploadedFiles((p) => p.filter((_, i) => i !== idx))} className="text-red-500 font-semibold ml-2">
-                      Remove
-                    </button>
-                  </div>
-                ))}
-              </div>
-            )}
+            <label className={labelClass}>STL file public URL</label>
+            <input
+              type="url"
+              value={formData.stlFileUrl}
+              onChange={(e) => setFormData((p) => ({ ...p, stlFileUrl: e.target.value }))}
+              placeholder="https://your-storage.com/case-file.stl"
+              className={inputClass}
+            />
+            <p className="mt-2 text-xs text-ink-muted">
+              Paste a publicly accessible link to your STL scan (Google Drive, Dropbox, clinic portal, etc.).
+            </p>
           </div>
 
           <div>

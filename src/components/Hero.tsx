@@ -105,7 +105,7 @@ export default function Hero() {
                 <div className="absolute top-3 left-3 sm:top-4 sm:left-4 pointer-events-none">
                   <span className="inline-flex items-center gap-1.5 rounded-full bg-white/90 backdrop-blur-sm border border-mint-100 px-3 py-1.5 text-[10px] sm:text-xs font-semibold text-mint-700 shadow-sm">
                     <Sparkles className="h-3.5 w-3.5 text-mint-500" />
-                    SmillyClear™
+                    SmileyClear™
                   </span>
                 </div>
 

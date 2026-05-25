@@ -37,7 +37,7 @@ export default function Footer() {
               </p>
               <p className="flex items-center gap-3">
                 <Mail size={16} className="text-mint-400 shrink-0" />
-                hello@smillyface.com
+                hello@smileyfacealigner.com
               </p>
             </div>
           </div>
@@ -90,7 +90,7 @@ export default function Footer() {
             <a href="#" className="hover:text-mint-300 transition-colors">Clinical Agreement</a>
           </div>
           <p className="text-xs text-white/30">
-            © 2026 Smilly Face. All rights reserved.
+            © 2026 smileyfacealigner. All rights reserved.
           </p>
         </div>
       </div>
