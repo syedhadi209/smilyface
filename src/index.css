@@ -94,3 +94,16 @@ body {
   background-size: 200% 100%;
   animation: shimmer 4s ease-in-out infinite;
 }
+
+/* Hero product frame */
+.hero-visual-glow {
+  background: linear-gradient(
+    135deg,
+    color-mix(in srgb, var(--color-mint-400) 45%, transparent),
+    color-mix(in srgb, #38bdf8 25%, transparent)
+  );
+}
+
+.hero-visual-frame {
+  background: linear-gradient(160deg, var(--color-mint-600) 0%, var(--color-mint-500) 40%, #0e7490 100%);
+}

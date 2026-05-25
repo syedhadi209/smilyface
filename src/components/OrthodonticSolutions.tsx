@@ -2,10 +2,6 @@ import { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { X, ChevronRight, CheckCircle2, Shield, Cpu, Activity, Clock, Sparkles } from 'lucide-react';
 
-interface OrthodonticSolutionsProps {
-  onOpenAppointment: () => void;
-}
-
 const features = [
   { icon: Cpu, title: 'AI-Powered Planning', desc: 'Predictive 3D modeling maps optimal tooth movement for every stage of treatment.' },
   { icon: Shield, title: 'Expert Review', desc: 'Licensed orthodontists verify every plan before your aligners are manufactured.' },
@@ -13,7 +9,7 @@ const features = [
   { icon: Clock, title: '24-Hour Turnaround', desc: 'From scan upload to interactive treatment preview in under one business day.' },
 ];
 
-export default function OrthodonticSolutions({ onOpenAppointment }: OrthodonticSolutionsProps) {
+export default function OrthodonticSolutions() {
   const [modalOpen, setModalOpen] = useState(false);
 
   return (
@@ -124,23 +120,16 @@ export default function OrthodonticSolutions({ onOpenAppointment }: OrthodonticS
                     </div>
                   ))}
                 </div>
-                <div className="flex gap-3">
-                  <button
-                    onClick={() => { setModalOpen(false); onOpenAppointment(); }}
-                    className="flex-1 bg-mint-500 hover:bg-mint-600 text-white py-3.5 rounded-2xl font-semibold text-sm transition-colors"
-                  >
-                    Book free scan
-                  </button>
-                  <button
-                    onClick={() => {
-                      setModalOpen(false);
-                      document.getElementById('submit')?.scrollIntoView({ behavior: 'smooth' });
-                    }}
-                    className="flex-1 bg-ink hover:bg-ink/90 text-white py-3.5 rounded-2xl font-semibold text-sm transition-colors"
-                  >
-                    Submit case
-                  </button>
-                </div>
+                <button
+                  type="button"
+                  onClick={() => {
+                    setModalOpen(false);
+                    document.getElementById('submit')?.scrollIntoView({ behavior: 'smooth' });
+                  }}
+                  className="w-full bg-ink hover:bg-ink/90 text-white py-3.5 rounded-2xl font-semibold text-sm transition-colors"
+                >
+                  Submit case
+                </button>
               </div>
             </motion.div>
           </div>

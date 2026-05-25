@@ -7,7 +7,7 @@ export default function CaseSubmissionForm() {
     dentistName: '',
     clinicEmail: '',
     patientName: '',
-    caseType: 'Overcrowding',
+    caseType: 'Crowding',
     customNotes: '',
   });
   const [dragActive, setDragActive] = useState(false);
@@ -68,7 +68,7 @@ export default function CaseSubmissionForm() {
             onClick={() => {
               setSuccess(false);
               setUploadedFiles([]);
-              setFormData({ dentistName: '', clinicEmail: '', patientName: '', caseType: 'Overcrowding', customNotes: '' });
+              setFormData({ dentistName: '', clinicEmail: '', patientName: '', caseType: 'Crowding', customNotes: '' });
               setSubmitPercent(0);
             }}
             className="bg-mint-500 hover:bg-mint-600 text-white px-8 py-3 rounded-2xl font-semibold transition-colors"
@@ -121,11 +121,12 @@ export default function CaseSubmissionForm() {
                 onChange={(e) => setFormData((p) => ({ ...p, caseType: e.target.value }))}
                 className={inputClass}
               >
-                <option value="Overcrowding">Overcrowding</option>
-                <option value="Gapped Teeth">Gaps & spacing</option>
-                <option value="Overbite">Overbite</option>
-                <option value="Underbite">Underbite</option>
-                <option value="Crossbite">Crossbite</option>
+                <option value="Cross Bite">Cross Bite</option>
+                <option value="Crowding">Crowding</option>
+                <option value="Over Bite">Over Bite</option>
+                <option value="Open Bite">Open Bite</option>
+                <option value="Diastema">Diastema</option>
+                <option value="Under Bite">Under Bite</option>
               </select>
             </div>
           </div>

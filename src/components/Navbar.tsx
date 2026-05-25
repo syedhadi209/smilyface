@@ -12,11 +12,7 @@ const navLinks = [
   { label: 'Contact', href: '#footer' },
 ];
 
-interface NavbarProps {
-  onOpenAppointment: () => void;
-}
-
-export default function Navbar({ onOpenAppointment }: NavbarProps) {
+export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
 
@@ -49,15 +45,6 @@ export default function Navbar({ onOpenAppointment }: NavbarProps) {
               </a>
             ))}
           </nav>
-
-          <div className="hidden lg:flex items-center gap-3">
-            <button
-              onClick={onOpenAppointment}
-              className="bg-ink hover:bg-ink/90 text-white px-6 py-2.5 rounded-full text-sm font-semibold transition-all hover:shadow-lg hover:shadow-ink/15 active:scale-[0.98]"
-            >
-              Book Free Scan
-            </button>
-          </div>
 
           <button
             className="lg:hidden p-2.5 rounded-xl hover:bg-mint-50 text-ink transition-colors"
@@ -109,16 +96,6 @@ export default function Navbar({ onOpenAppointment }: NavbarProps) {
                   </a>
                 ))}
               </nav>
-
-              <button
-                onClick={() => {
-                  setMobileOpen(false);
-                  onOpenAppointment();
-                }}
-                className="w-full bg-gradient-to-r from-mint-500 to-mint-600 text-white py-4 rounded-2xl font-semibold shadow-lg shadow-mint-500/25"
-              >
-                Book Free Scan
-              </button>
             </motion.div>
           </motion.div>
         )}

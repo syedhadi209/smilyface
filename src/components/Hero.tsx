@@ -1,24 +1,14 @@
 import { motion } from 'motion/react';
 import { ArrowRight, Sparkles, Shield, Clock, Star } from 'lucide-react';
 
-interface HeroProps {
-  onOpenAppointment: () => void;
-}
-
-const stats = [
-  { value: '50K+', label: 'Smiles transformed' },
-  { value: '6 mo', label: 'Average treatment' },
-  { value: '98%', label: 'Success rate' },
-];
-
-export default function Hero({ onOpenAppointment }: HeroProps) {
+export default function Hero() {
   return (
-    <section className="relative min-h-[90vh] hero-mesh overflow-hidden flex items-center pt-28 pb-20">
+    <section className="relative min-h-[90vh] hero-mesh overflow-hidden flex items-center pt-28 pb-16 sm:pb-20">
       <div className="absolute top-20 right-[10%] w-72 h-72 bg-mint-300/30 rounded-full blur-[100px] pointer-events-none" />
       <div className="absolute bottom-10 left-[5%] w-96 h-96 bg-sky-200/40 rounded-full blur-[120px] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-6 relative z-10 w-full">
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+        <div className="grid lg:grid-cols-2 gap-10 sm:gap-12 lg:gap-16 items-center">
           <div>
             <motion.div
               initial={{ opacity: 0, y: 12 }}
@@ -55,20 +45,14 @@ export default function Hero({ onOpenAppointment }: HeroProps) {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.3 }}
-              className="mt-10 flex flex-col sm:flex-row gap-4"
+              className="mt-10"
             >
-              <button
-                onClick={onOpenAppointment}
-                className="group inline-flex items-center justify-center gap-2 bg-gradient-to-r from-mint-500 to-mint-600 hover:from-mint-600 hover:to-mint-700 text-white px-8 py-4 rounded-2xl font-semibold shadow-xl shadow-mint-500/25 transition-all hover:shadow-mint-500/35 active:scale-[0.98]"
-              >
-                Start Your Free Scan
-                <ArrowRight className="w-5 h-5 group-hover:translate-x-0.5 transition-transform" />
-              </button>
               <a
                 href="#cases"
-                className="inline-flex items-center justify-center px-8 py-4 rounded-2xl font-semibold text-ink bg-white border border-mint-200/80 hover:border-mint-400 hover:bg-mint-50/50 transition-all shadow-sm"
+                className="group inline-flex items-center justify-center gap-2 px-8 py-4 rounded-2xl font-semibold text-ink bg-white border border-mint-200/80 hover:border-mint-400 hover:bg-mint-50/50 transition-all shadow-sm"
               >
                 See Treatable Cases
+                <ArrowRight className="w-5 h-5 group-hover:translate-x-0.5 transition-transform" />
               </a>
             </motion.div>
 
@@ -92,52 +76,53 @@ export default function Hero({ onOpenAppointment }: HeroProps) {
           </div>
 
           <motion.div
-            initial={{ opacity: 0, scale: 0.96 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.9, delay: 0.2 }}
-            className="relative"
+            initial={{ opacity: 0, y: 24 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.9, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+            className="relative w-full max-w-md mx-auto lg:max-w-none lg:mx-0"
           >
-            <div className="relative rounded-[2rem] overflow-hidden shadow-2xl shadow-mint-500/10 border border-white/80">
-              <img
-                src="https://images.unsplash.com/photo-1606811841689-23dfddce3e95?q=80&w=1200&auto=format&fit=crop"
-                alt="Person with a bright, confident smile"
-                className="w-full aspect-[4/5] object-cover"
-                referrerPolicy="no-referrer"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-ink/30 via-transparent to-transparent" />
-              <div className="absolute bottom-6 left-6 right-6 glass-card rounded-2xl p-5 aligner-shine">
-                <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-mint-400 to-mint-600 flex items-center justify-center text-white text-lg font-bold shadow-lg">
-                    ✓
-                  </div>
-                  <div>
-                    <p className="font-semibold text-ink text-sm">SmillyClear™ Aligners</p>
-                    <p className="text-xs text-ink-muted">Virtually invisible · Removable · Comfortable</p>
-                  </div>
+            {/* Ambient glow */}
+            <div
+              className="hero-visual-glow absolute -inset-3 sm:-inset-5 rounded-[1.75rem] sm:rounded-[2.25rem] blur-2xl opacity-70 pointer-events-none"
+              aria-hidden
+            />
+
+            {/* Photo frame */}
+            <div className="relative overflow-hidden rounded-2xl sm:rounded-3xl lg:rounded-[2rem] bg-ink shadow-2xl shadow-mint-500/15 ring-1 ring-white/20">
+              <div className="relative w-full aspect-[4/3] lg:aspect-[5/4] max-h-[min(72vw,380px)] sm:max-h-[min(52vh,440px)] lg:max-h-[520px]">
+                <img
+                  src="https://res.cloudinary.com/dezouiujs/image/upload/v1779693507/46-GettyImages-535353721_um2nxc.jpg"
+                  alt="Clear orthodontic aligner trays held by a dental professional wearing gloves"
+                  className="absolute inset-0 h-full w-full object-cover object-center"
+                  loading="eager"
+                  decoding="async"
+                  referrerPolicy="no-referrer"
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 560px"
+                />
+
+                <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-ink/55 via-ink/5 to-transparent" />
+
+                <div className="absolute top-3 left-3 sm:top-4 sm:left-4 pointer-events-none">
+                  <span className="inline-flex items-center gap-1.5 rounded-full bg-white/90 backdrop-blur-sm border border-mint-100 px-3 py-1.5 text-[10px] sm:text-xs font-semibold text-mint-700 shadow-sm">
+                    <Sparkles className="h-3.5 w-3.5 text-mint-500" />
+                    SmillyClear™
+                  </span>
+                </div>
+
+                <div className="absolute inset-x-0 bottom-0 px-4 pb-4 pt-12 sm:px-5 sm:pb-5 sm:pt-14 bg-gradient-to-t from-ink/70 to-transparent pointer-events-none">
+                  <p className="text-sm sm:text-base font-semibold text-white">Premium clear aligners</p>
+                  <p className="text-[11px] sm:text-xs text-white/80 mt-0.5">Expert care · Clinic precision · Invisible comfort</p>
                 </div>
               </div>
             </div>
 
-            <div className="absolute -left-4 md:-left-8 top-1/4 glass-card rounded-2xl px-5 py-4 shadow-xl hidden md:block">
-              <p className="text-2xl font-display text-mint-600">6 mo</p>
-              <p className="text-xs text-ink-muted font-medium">Avg. treatment time</p>
-            </div>
+            {/* Decorative ring */}
+            <div
+              className="pointer-events-none absolute -right-2 -top-2 h-16 w-16 sm:h-20 sm:w-20 rounded-full border border-mint-300/40 bg-mint-100/30 backdrop-blur-sm hidden sm:block"
+              aria-hidden
+            />
           </motion.div>
         </div>
-
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.5 }}
-          className="mt-20 grid grid-cols-3 gap-6 max-w-2xl"
-        >
-          {stats.map((stat) => (
-            <div key={stat.label} className="text-center md:text-left">
-              <p className="text-2xl md:text-3xl font-display text-ink">{stat.value}</p>
-              <p className="text-xs text-ink-muted mt-1 font-medium">{stat.label}</p>
-            </div>
-          ))}
-        </motion.div>
       </div>
     </section>
   );
