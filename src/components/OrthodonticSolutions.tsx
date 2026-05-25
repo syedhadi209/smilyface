@@ -1,178 +1,144 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { X, ChevronRight, CheckCircle2, Shield, Cpu, Activity, Clock } from 'lucide-react';
-import TiltCard from './TiltCard';
+import { X, ChevronRight, CheckCircle2, Shield, Cpu, Activity, Clock, Sparkles } from 'lucide-react';
 
 interface OrthodonticSolutionsProps {
   onOpenAppointment: () => void;
 }
 
+const features = [
+  { icon: Cpu, title: 'AI-Powered Planning', desc: 'Predictive 3D modeling maps optimal tooth movement for every stage of treatment.' },
+  { icon: Shield, title: 'Expert Review', desc: 'Licensed orthodontists verify every plan before your aligners are manufactured.' },
+  { icon: Activity, title: 'Live Dashboard', desc: 'Track progress remotely with secure digital check-ins from your phone.' },
+  { icon: Clock, title: '24-Hour Turnaround', desc: 'From scan upload to interactive treatment preview in under one business day.' },
+];
+
 export default function OrthodonticSolutions({ onOpenAppointment }: OrthodonticSolutionsProps) {
-  const [showSolutionsModal, setShowSolutionsModal] = useState(false);
+  const [modalOpen, setModalOpen] = useState(false);
 
   return (
     <>
-      {/* Main Orthodontic Solutions Section exactly as in screenshot */}
-      <section className="py-24 bg-white border-t border-b border-gray-100">
-        <div className="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-center">
-          
-          {/* Left Column: Related Orthodontic / Treatment Image wrapped in 3D interactive Tilt */}
-          <TiltCard className="aspect-[16/10] w-full" intensity={6} hoverScale={1.01}>
-            <div className="relative group overflow-hidden rounded-[32px] shadow-xl border border-gray-100 w-full h-full bg-slate-100">
-              <img 
-                src="https://images.unsplash.com/photo-1598256989800-fe5f95da9787?q=80&w=1000" 
-                alt="Professional dentist or orthodontist explaining clear aligner treatment to patient using high-precision 3D dental model" 
-                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                referrerPolicy="no-referrer"
-              />
-              {/* Subtle high-contrast lighting overlay */}
-              <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent opacity-60 pointer-events-none" />
-              
-              {/* Elegant details tag */}
-              <span className="absolute bottom-5 left-5 bg-[#0B151E]/90 backdrop-blur-md text-white/95 text-[10px] font-bold tracking-widest uppercase px-3.5 py-1.5 rounded-full flex items-center gap-2">
-                <span className="w-2 h-2 rounded-full bg-[#00A896]" />
-                Smilly Face Clinical Center
+      <section className="py-24 bg-white relative overflow-hidden">
+        <div className="absolute inset-0 pattern-dots opacity-40 pointer-events-none" />
+        <div className="max-w-7xl mx-auto px-6 relative">
+          <div className="grid lg:grid-cols-2 gap-16 items-center">
+            <motion.div
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
+              className="relative"
+            >
+              <div className="rounded-[2rem] overflow-hidden shadow-2xl shadow-mint-500/10 border border-mint-100">
+                <img
+                  src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?q=80&w=1000&auto=format&fit=crop"
+                  alt="Clear aligner treatment consultation"
+                  className="w-full aspect-[4/3] object-cover"
+                  referrerPolicy="no-referrer"
+                />
+              </div>
+              <div className="absolute -bottom-6 -right-4 md:right-8 bg-white rounded-2xl p-5 shadow-xl border border-mint-100 max-w-[200px]">
+                <p className="text-3xl font-display text-mint-600">99.2%</p>
+                <p className="text-xs text-ink-muted font-medium mt-1">Treatment accuracy rate</p>
+              </div>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, x: 30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
+            >
+              <span className="inline-flex items-center gap-2 text-xs font-semibold text-mint-600 uppercase tracking-widest mb-4">
+                <Sparkles size={14} />
+                For clinics & patients
               </span>
-            </div>
-          </TiltCard>
+              <h2 className="text-4xl md:text-5xl font-display text-ink leading-tight mb-6">
+                Modern aligner systems,{' '}
+                <span className="text-gradient-mint italic">built for precision</span>
+              </h2>
+              <p className="text-lg text-ink-muted leading-relaxed mb-4">
+                Smilly Face streamlines orthodontic workflows with specialist-approved clear aligner treatments at transparent pricing.
+              </p>
+              <p className="text-sm text-ink-muted leading-relaxed mb-8">
+                Unmatched dimensional accuracy, real-time case tracking, and dedicated clinical support — so you can focus on what matters: beautiful smiles.
+              </p>
 
-          {/* Right Column: Copywriting absolutely identical to user's screenshot */}
-          <div className="space-y-6">
-            <h2 className="text-4xl md:text-5xl font-serif font-medium tracking-tight leading-tight text-[#0B151E]" id="ortho-solutions-heading">
-              <span className="text-[#00A896] block mb-2">Explore Our Range of</span>
-              <span>Modern Aligner Systems</span>
-            </h2>
-            
-            <p className="text-gray-700 text-lg md:text-xl font-normal leading-relaxed">
-              At Smilly Face, we are dedicated to streamlining your practice's workflow, freeing you from tedious digital setups.
-            </p>
+              <div className="grid sm:grid-cols-2 gap-4 mb-8">
+                {features.slice(0, 2).map(({ icon: Icon, title, desc }) => (
+                  <div key={title} className="p-4 rounded-2xl bg-mint-50/80 border border-mint-100">
+                    <Icon className="w-5 h-5 text-mint-600 mb-2" />
+                    <h4 className="font-semibold text-sm text-ink mb-1">{title}</h4>
+                    <p className="text-xs text-ink-muted leading-relaxed">{desc}</p>
+                  </div>
+                ))}
+              </div>
 
-            <p className="text-gray-500 text-sm md:text-base leading-relaxed">
-              Access professionally curated, specialist-approved alignment treatments at cost-effective rates. We provide unmatched quality control and dimensional accuracy to enhance patient satisfaction. Experience complete real-time dashboard tracking and effortless communication with our dedicated support staff.
-            </p>
-
-            <div className="pt-4">
-              <button 
-                onClick={() => setShowSolutionsModal(true)}
-                className="bg-[#4E5BA6] hover:bg-[#3E4A8D] text-white px-8 py-3.5 rounded-lg font-bold text-sm transition-all shadow-lg shadow-indigo-600/10 active:scale-95 cursor-pointer flex items-center gap-2"
-                id="btn-ortho-know-more"
+              <button
+                onClick={() => setModalOpen(true)}
+                className="inline-flex items-center gap-2 bg-ink hover:bg-ink/90 text-white px-7 py-3.5 rounded-2xl font-semibold text-sm transition-all active:scale-[0.98]"
               >
-                Learn More
+                Explore solutions
                 <ChevronRight size={16} />
               </button>
-            </div>
+            </motion.div>
           </div>
         </div>
       </section>
 
-      {/* Solutions Know More Modal */}
       <AnimatePresence>
-        {showSolutionsModal && (
+        {modalOpen && (
           <div className="fixed inset-0 z-[110] flex items-center justify-center p-4">
-            {/* Backdrop blurring the screen */}
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="absolute inset-0 bg-black/70 backdrop-blur-sm" 
-              onClick={() => setShowSolutionsModal(false)} />
-            
-            <motion.div 
-              initial={{ scale: 0.95, y: 15, opacity: 0 }}
-              animate={{ scale: 1, y: 0, opacity: 1 }}
-              exit={{ scale: 0.95, y: 15, opacity: 0 }}
-              className="bg-white rounded-[32px] shadow-2xl relative z-10 w-full max-w-2xl overflow-hidden border border-black/5"
-              id="ortho-solutions-modal"
+              className="absolute inset-0 bg-ink/50 backdrop-blur-md"
+              onClick={() => setModalOpen(false)}
+            />
+            <motion.div
+              initial={{ scale: 0.95, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.95, opacity: 0 }}
+              className="bg-white rounded-3xl shadow-2xl relative z-10 w-full max-w-lg overflow-hidden border border-mint-100"
             >
-              <button 
-                onClick={() => setShowSolutionsModal(false)}
-                className="absolute top-5 right-5 p-2 bg-gray-100 hover:bg-gray-200 text-[#0B151E] rounded-full transition-colors z-20 cursor-pointer"
-                id="btn-close-solutions-modal"
+              <button
+                onClick={() => setModalOpen(false)}
+                className="absolute top-5 right-5 p-2 bg-mint-50 hover:bg-mint-100 rounded-xl transition-colors z-20"
               >
                 <X size={16} />
               </button>
-
               <div className="p-8 space-y-6">
                 <div>
-                  <span className="px-3.5 py-1 bg-[#4E5BA6]/10 text-[#4E5BA6] text-[10px] font-bold uppercase tracking-wider rounded-full inline-block">
-                    Precision Orthodontic Design
+                  <span className="px-3 py-1 bg-mint-100 text-mint-700 text-[10px] font-semibold uppercase tracking-wider rounded-full">
+                    SmillyClear™ Technology
                   </span>
-                  <h3 className="text-3xl font-serif font-bold text-[#0B151E] mt-3">State-of-the-Art Digital Craftsmanship</h3>
-                  <p className="text-sm text-gray-500 mt-1.5">
-                    We engineer seamless treatment pathways that optimize clinical accuracy and remove technical roadblocks.
-                  </p>
+                  <h3 className="text-2xl font-display text-ink mt-3">Digital craftsmanship at scale</h3>
                 </div>
-
-                {/* Key Benefits Grid */}
-                <div className="grid sm:grid-cols-2 gap-4">
-                  {[
-                    {
-                      icon: <Cpu className="text-[#00A896]" size={20} />,
-                      title: "Next-Gen Teeth Planning",
-                      desc: "Uses dynamic predictive analysis to assess optimal placement for dental structures and roots."
-                    },
-                    {
-                      icon: <Shield className="text-[#4E5BA6]" size={20} />,
-                      title: "Certified Specialist Inspections",
-                      desc: "Every digital design undergoes intensive custom evaluation by a licensed orthodontic authority."
-                    },
-                    {
-                      icon: <Activity className="text-[#00A896]" size={20} />,
-                      title: "Live Treatment Dashboard",
-                      desc: "Secure, around-the-clock digital access offering immediate check-ins and smooth adjustments."
-                    },
-                    {
-                      icon: <Clock className="text-[#4E5BA6]" size={20} />,
-                      title: "Express 24-Hour Design Delivery",
-                      desc: "Go from digital scan upload to an interactive dental pathway in under one day with fixed pricing."
-                    }
-                  ].map((feat, i) => (
-                    <div key={i} className="p-4 bg-slate-50 border border-slate-100 rounded-2xl space-y-2">
-                      <div className="flex items-center gap-3">
-                        <div className="p-1.5 bg-white rounded-lg shadow-sm">
-                          {feat.icon}
-                        </div>
-                        <h4 className="font-bold text-sm text-[#0B151E]">{feat.title}</h4>
-                      </div>
-                      <p className="text-xs text-gray-400 leading-relaxed">
-                        {feat.desc}
-                      </p>
+                <div className="grid sm:grid-cols-2 gap-3">
+                  {features.map(({ icon: Icon, title, desc }) => (
+                    <div key={title} className="p-4 rounded-2xl bg-slate-50 border border-slate-100">
+                      <Icon className="w-5 h-5 text-mint-600 mb-2" />
+                      <h4 className="font-semibold text-sm text-ink">{title}</h4>
+                      <p className="text-xs text-ink-muted mt-1 leading-relaxed">{desc}</p>
                     </div>
                   ))}
                 </div>
-
-                <div className="bg-teal-500/5 p-4 rounded-2xl flex items-center justify-between text-xs text-[#00A896] border border-teal-500/10">
-                  <span className="flex items-center gap-2 font-medium">
-                    <CheckCircle2 size={16} />
-                    Independently verified smile transformations exceeding 99.2%
-                  </span>
-                  <span className="font-mono text-[10px] font-bold bg-[#00A896]/10 px-2 py-0.5 rounded uppercase font-semibold">SmillyClear™</span>
-                </div>
-
-                {/* Modal footer CTAs */}
-                <div className="flex gap-3 pt-2">
-                  <button 
-                    onClick={() => {
-                      setShowSolutionsModal(false);
-                      onOpenAppointment();
-                    }}
-                    className="flex-1 bg-[#00A896] hover:bg-[#009080] text-white py-3.5 rounded-xl font-bold text-center text-xs transition-all cursor-pointer shadow-md shadow-teal-500/10"
+                <div className="flex gap-3">
+                  <button
+                    onClick={() => { setModalOpen(false); onOpenAppointment(); }}
+                    className="flex-1 bg-mint-500 hover:bg-mint-600 text-white py-3.5 rounded-2xl font-semibold text-sm transition-colors"
                   >
-                    Schedule a Free Diagnostics Visit
+                    Book free scan
                   </button>
-                  <button 
+                  <button
                     onClick={() => {
-                      setShowSolutionsModal(false);
-                      const element = document.getElementById('submit');
-                      if (element) {
-                        element.scrollIntoView({ behavior: 'smooth' });
-                      } else {
-                        window.location.hash = "#submit";
-                      }
+                      setModalOpen(false);
+                      document.getElementById('submit')?.scrollIntoView({ behavior: 'smooth' });
                     }}
-                    className="flex-1 bg-[#0B151E] hover:bg-black text-white py-3.5 rounded-xl font-bold text-center text-xs transition-all cursor-pointer"
+                    className="flex-1 bg-ink hover:bg-ink/90 text-white py-3.5 rounded-2xl font-semibold text-sm transition-colors"
                   >
-                    Submit Patient Scan Directly
+                    Submit case
                   </button>
                 </div>
               </div>

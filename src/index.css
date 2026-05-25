@@ -1,11 +1,96 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Instrument+Serif:ital@0;1&display=swap');
 @import "tailwindcss";
 
 @theme {
-  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
-  --font-serif: "Cormorant Garamond", serif;
-  
-  --color-smilly-blue: #0A5EB0;
-  --color-smilly-light: #F8FAFC;
-  --color-smilly-dark: #0F172A;
+  --font-sans: "DM Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Instrument Serif", Georgia, serif;
+
+  --color-mint-50: #f0fdfa;
+  --color-mint-100: #ccfbf1;
+  --color-mint-200: #99f6e4;
+  --color-mint-300: #5eead4;
+  --color-mint-400: #2dd4bf;
+  --color-mint-500: #14b8a6;
+  --color-mint-600: #0d9488;
+  --color-mint-700: #0f766e;
+
+  --color-sky-50: #f0f9ff;
+  --color-sky-100: #e0f2fe;
+  --color-sky-200: #bae6fd;
+
+  --color-ink: #0f172a;
+  --color-ink-muted: #64748b;
+  --color-surface: #fafdfb;
+  --color-surface-elevated: #ffffff;
+}
+
+* {
+  scroll-behavior: smooth;
+}
+
+html {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--color-surface);
+  color: var(--color-ink);
+}
+
+::selection {
+  background-color: color-mix(in srgb, var(--color-mint-400) 35%, transparent);
+  color: var(--color-ink);
+}
+
+.font-display {
+  font-family: var(--font-display);
+}
+
+/* Subtle grid pattern for sections */
+.pattern-dots {
+  background-image: radial-gradient(circle, color-mix(in srgb, var(--color-mint-500) 12%, transparent) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+/* Glass card */
+.glass-card {
+  background: color-mix(in srgb, white 72%, transparent);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid color-mix(in srgb, white 80%, var(--color-mint-200));
+}
+
+/* Gradient text */
+.text-gradient-mint {
+  background: linear-gradient(135deg, var(--color-mint-600) 0%, var(--color-mint-400) 50%, #38bdf8 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Hero mesh gradient */
+.hero-mesh {
+  background:
+    radial-gradient(ellipse 80% 60% at 70% 20%, color-mix(in srgb, var(--color-mint-300) 25%, transparent), transparent),
+    radial-gradient(ellipse 60% 50% at 20% 80%, color-mix(in srgb, #38bdf8 15%, transparent), transparent),
+    linear-gradient(180deg, var(--color-mint-50) 0%, var(--color-surface) 55%, white 100%);
+}
+
+/* Aligner shimmer animation */
+@keyframes shimmer {
+  0% { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+.aligner-shine {
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    color-mix(in srgb, white 60%, transparent) 50%,
+    transparent 100%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 4s ease-in-out infinite;
 }
