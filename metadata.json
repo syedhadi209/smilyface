@@ -1,0 +1,6 @@
+{
+  "name": "Smillyface",
+  "description": "Premium clear aligner solutions for life-changing smiles. Innovative orthodontic technology delivered with a patient-first approach.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
