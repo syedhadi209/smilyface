@@ -26,18 +26,48 @@ export default function Footer() {
             <p className="mt-6 text-white/50 text-sm leading-relaxed max-w-sm">
               Premium clear aligners engineered for invisible comfort. Transform your smile with clinical-grade precision and expert orthodontic oversight.
             </p>
-            <div className="mt-8 space-y-3 text-sm text-white/60">
-              <p className="flex items-start gap-3">
-                <MapPin size={16} className="text-mint-400 mt-0.5 shrink-0" />
-                Shabbir Healthcare, Butt Chowk, Lahore
-              </p>
-              <p className="flex items-center gap-3">
-                <Phone size={16} className="text-mint-400 shrink-0" />
-                +92 339 0599003
-              </p>
-              <p className="flex items-center gap-3">
+            <div className="mt-8 space-y-5 text-sm text-white/60">
+              <div className="space-y-2">
+                <p className="text-xs font-semibold uppercase tracking-widest text-mint-400">United Kingdom</p>
+                <p className="flex items-start gap-3">
+                  <MapPin size={16} className="text-mint-400 mt-0.5 shrink-0" />
+                  Newland Street, M8 5RY
+                </p>
+                <p className="flex items-center gap-3">
+                  <Phone size={16} className="text-mint-400 shrink-0" />
+                  <a
+                    href="https://wa.me/447903164446"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="hover:text-mint-300 transition-colors"
+                  >
+                    WhatsApp: +44 7903 164446
+                  </a>
+                </p>
+              </div>
+              <div className="space-y-2">
+                <p className="text-xs font-semibold uppercase tracking-widest text-mint-400">Canada</p>
+                <p className="flex items-start gap-3">
+                  <MapPin size={16} className="text-mint-400 mt-0.5 shrink-0" />
+                  Hadrian Court, Toronto, L1X 2T3
+                </p>
+                <p className="flex items-center gap-3">
+                  <Phone size={16} className="text-mint-400 shrink-0" />
+                  <a
+                    href="https://wa.me/14377787717"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="hover:text-mint-300 transition-colors"
+                  >
+                    WhatsApp: +1 437 778 7717
+                  </a>
+                </p>
+              </div>
+              <p className="flex items-center gap-3 pt-1">
                 <Mail size={16} className="text-mint-400 shrink-0" />
-                hello@smileyfacealigner.com
+                <a href="mailto:hello@smileyfacealigner.com" className="hover:text-mint-300 transition-colors">
+                  hello@smileyfacealigner.com
+                </a>
               </p>
             </div>
           </div>

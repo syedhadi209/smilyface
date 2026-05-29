@@ -74,7 +74,7 @@ export default function ConsultationModal({ isOpen, onClose }: ConsultationModal
               </div>
               <div>
                 <h3 className="text-xl font-display text-ink">Request an appointment</h3>
-                <p className="text-xs text-ink-muted">3D diagnostic session at our Lahore clinic</p>
+                <p className="text-xs text-ink-muted">3D diagnostic session at our UK or Canada clinic</p>
               </div>
             </div>
 
