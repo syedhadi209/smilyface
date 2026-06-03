@@ -5,7 +5,6 @@ const footerLinks = {
   explore: [
     { label: 'Why Choose Us', href: '#benefits' },
     { label: 'Treatment Process', href: '#process' },
-    { label: 'Pricing Plans', href: '#pricing' },
     { label: 'Treatable Cases', href: '#cases' },
   ],
   support: [

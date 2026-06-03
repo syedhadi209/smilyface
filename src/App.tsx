@@ -17,7 +17,6 @@ import OrthodonticSolutions from './components/OrthodonticSolutions';
 import ConsultationModal from './components/ConsultationModal';
 import CaseSubmissionForm from './components/CaseSubmissionForm';
 import TreatableCases from './components/TreatableCases';
-import PricingSection from './components/PricingSection';
 import TiltCard from './components/TiltCard';
 
 const benefits = [
@@ -193,8 +192,6 @@ export default function App() {
           </div>
         </div>
       </section>
-
-      <PricingSection />
 
       {/* Case submission */}
       <section id="submit" className="py-24 bg-mint-50/40 border-y border-mint-100/60">

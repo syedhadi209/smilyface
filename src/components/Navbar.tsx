@@ -6,7 +6,6 @@ import Logo from './Logo';
 const navLinks = [
   { label: 'Why Us', href: '#benefits' },
   { label: 'How It Works', href: '#process' },
-  { label: 'Pricing', href: '#pricing' },
   { label: 'Conditions', href: '#cases' },
   { label: 'Submit Case', href: '#submit' },
   { label: 'Contact', href: '#footer' },
