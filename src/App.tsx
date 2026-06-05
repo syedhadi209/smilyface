@@ -1,12 +1,4 @@
-import { useState } from 'react';
-import {
-  CheckCircle2,
-  Sparkles,
-  Award,
-  Zap,
-  Camera,
-  Quote,
-} from 'lucide-react';
+import { Zap, Camera, Quote } from 'lucide-react';
 import { motion, useScroll, useTransform } from 'motion/react';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
@@ -14,16 +6,9 @@ import Hero from './components/Hero';
 import HeroStats from './components/HeroStats';
 import SectionHeading from './components/SectionHeading';
 import OrthodonticSolutions from './components/OrthodonticSolutions';
-import ConsultationModal from './components/ConsultationModal';
 import CaseSubmissionForm from './components/CaseSubmissionForm';
 import TreatableCases from './components/TreatableCases';
-import TiltCard from './components/TiltCard';
-
-const benefits = [
-  { icon: Sparkles, title: 'Virtually Invisible', desc: 'SmileyClear™ high-clarity material disappears in everyday conversations.', color: 'bg-mint-50 text-mint-600' },
-  { icon: Award, title: 'Expert Oversight', desc: 'Every plan is designed, approved, and monitored by licensed orthodontic specialists.', color: 'bg-sky-50 text-sky-600' },
-  { icon: CheckCircle2, title: 'Lifestyle Freedom', desc: 'Remove aligners for meals, events, and photos. Oral hygiene stays simple.', color: 'bg-emerald-50 text-emerald-600' },
-];
+import WhyChooseUs from './components/WhyChooseUs';
 
 const steps = [
   { num: '01', title: '3D Digital Scan', desc: 'No messy impressions. Thousands of depth points map your teeth in under 3 minutes.' },
@@ -39,7 +24,6 @@ const testimonials = [
 ];
 
 export default function App() {
-  const [showAppointment, setShowAppointment] = useState(false);
   const { scrollYProgress } = useScroll();
 
   return (
@@ -50,44 +34,13 @@ export default function App() {
       />
 
       <Navbar />
-      <ConsultationModal isOpen={showAppointment} onClose={() => setShowAppointment(false)} />
-
       <Hero />
       <HeroStats />
       <OrthodonticSolutions />
 
-      {/* Benefits */}
-      <section id="benefits" className="py-24 bg-white">
-        <div className="max-w-7xl mx-auto px-6">
-          <SectionHeading badge="Why smileyfacealigner" centered subtitle="Invisible aligners designed for real life — not just straight teeth.">
-            The smarter way to straighten
-          </SectionHeading>
+      <WhyChooseUs />
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {benefits.map(({ icon: Icon, title, desc, color }, idx) => (
-              <motion.div
-                key={title}
-                initial={{ opacity: 0, y: 28 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: idx * 0.08, duration: 0.6 }}
-              >
-                <TiltCard className="h-full">
-                  <div className="h-full p-8 rounded-3xl bg-white border border-slate-100 hover:border-mint-200 hover:shadow-xl hover:shadow-mint-500/5 transition-all duration-300">
-                    <div className={`w-12 h-12 rounded-2xl ${color} flex items-center justify-center mb-5`}>
-                      <Icon size={22} />
-                    </div>
-                    <h3 className="text-lg font-semibold text-ink mb-2">{title}</h3>
-                    <p className="text-sm text-ink-muted leading-relaxed">{desc}</p>
-                  </div>
-                </TiltCard>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <TreatableCases onOpenAppointment={() => setShowAppointment(true)} />
+      <TreatableCases />
 
       {/* Process */}
       <section id="process" className="py-24 bg-white">

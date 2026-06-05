@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { motion, AnimatePresence, LazyMotion, domAnimation } from 'motion/react';
-import { X, Clock, Shield, ArrowRight, Sparkles } from 'lucide-react';
+import { X, Clock, Shield, ArrowRight } from 'lucide-react';
 import SectionHeading from './SectionHeading';
 
 /** Lighter Cloudinary delivery for card thumbnails */
@@ -66,11 +66,7 @@ export const treatableCases = [
   },
 ];
 
-interface TreatableCasesProps {
-  onOpenAppointment: () => void;
-}
-
-export default function TreatableCases({ onOpenAppointment }: TreatableCasesProps) {
+export default function TreatableCases() {
   const [activeCase, setActiveCase] = useState<(typeof treatableCases)[number] | null>(null);
 
   return (
@@ -143,23 +139,13 @@ export default function TreatableCases({ onOpenAppointment }: TreatableCasesProp
             ))}
           </div>
 
-          <div className="mt-14 rounded-2xl px-6 py-5 flex flex-col sm:flex-row items-center justify-between gap-4 border border-mint-200/60 bg-white shadow-sm">
-            <div className="flex items-center gap-3 text-left">
-              <div className="w-11 h-11 rounded-xl bg-mint-100 flex items-center justify-center shrink-0">
-                <Shield className="w-5 h-5 text-mint-600" />
-              </div>
-              <p className="text-sm text-ink-muted max-w-xl">
-                <span className="font-semibold text-ink">98% success rate</span> — evaluated cases achieve excellent results with clear aligners under specialist oversight.
-              </p>
+          <div className="mt-14 rounded-2xl px-6 py-5 flex items-center gap-3 border border-mint-200/60 bg-white shadow-sm">
+            <div className="w-11 h-11 rounded-xl bg-mint-100 flex items-center justify-center shrink-0">
+              <Shield className="w-5 h-5 text-mint-600" />
             </div>
-            <button
-              type="button"
-              onClick={onOpenAppointment}
-              className="shrink-0 inline-flex items-center gap-2 bg-ink hover:bg-ink/90 text-white px-6 py-3 rounded-2xl text-sm font-semibold transition-colors active:scale-[0.98]"
-            >
-              <Sparkles size={16} className="text-mint-300" />
-              Check your eligibility
-            </button>
+            <p className="text-sm text-ink-muted max-w-xl">
+              <span className="font-semibold text-ink">98% success rate</span> — evaluated cases achieve excellent results with clear aligners under specialist oversight.
+            </p>
           </div>
         </div>
 
