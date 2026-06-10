@@ -8,7 +8,7 @@ import SectionHeading from './components/SectionHeading';
 import OrthodonticSolutions from './components/OrthodonticSolutions';
 import CaseSubmissionForm from './components/CaseSubmissionForm';
 import TreatableCases from './components/TreatableCases';
-import WhyChooseUs from './components/WhyChooseUs';
+// import WhyChooseUs from './components/WhyChooseUs';
 
 const steps = [
   { num: '01', title: '3D Digital Scan', desc: 'No messy impressions. Thousands of depth points map your teeth in under 3 minutes.' },
@@ -38,7 +38,8 @@ export default function App() {
       <HeroStats />
       <OrthodonticSolutions />
 
-      <WhyChooseUs />
+      {/* One-page induction section — temporarily hidden */}
+      {/* <WhyChooseUs /> */}
 
       <TreatableCases />
 
