@@ -1,36 +1,57 @@
 import { useState, type FormEvent } from 'react';
-import { CheckCircle2 } from 'lucide-react';
+import { CheckCircle2, AlertCircle } from 'lucide-react';
 import { motion } from 'motion/react';
 
-export default function CaseSubmissionForm() {
-  const [formData, setFormData] = useState({
-    dentistName: '',
-    clinicEmail: '',
-    patientName: '',
-    caseType: 'Crowding',
-    stlFileUrl: '',
-    customNotes: '',
-  });
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitPercent, setSubmitPercent] = useState(0);
-  const [success, setSuccess] = useState(false);
+type FormData = {
+  dentistName: string;
+  clinicEmail: string;
+  patientName: string;
+  caseType: string;
+  stlFileUrl: string;
+  customNotes: string;
+};
 
-  const handleSubmit = (e: FormEvent) => {
+const initialFormData: FormData = {
+  dentistName: '',
+  clinicEmail: '',
+  patientName: '',
+  caseType: 'Crowding',
+  stlFileUrl: '',
+  customNotes: '',
+};
+
+export default function CaseSubmissionForm() {
+  const [formData, setFormData] = useState<FormData>(initialFormData);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [success, setSuccess] = useState(false);
+  const [error, setError] = useState('');
+
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
-    if (!formData.patientName || !formData.clinicEmail) return;
+    if (!formData.patientName.trim() || !formData.clinicEmail.trim()) return;
+
     setIsSubmitting(true);
-    setSubmitPercent(10);
-    const interval = setInterval(() => {
-      setSubmitPercent((prev) => {
-        if (prev >= 100) {
-          clearInterval(interval);
-          setIsSubmitting(false);
-          setSuccess(true);
-          return 100;
-        }
-        return prev + 15;
+    setError('');
+
+    try {
+      const res = await fetch('/api/submit-case', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
       });
-    }, 300);
+
+      const data = (await res.json().catch(() => ({}))) as { message?: string };
+
+      if (!res.ok) {
+        throw new Error(data.message || 'Failed to submit case. Please try again.');
+      }
+
+      setSuccess(true);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Something went wrong. Please try again.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const inputClass =
@@ -39,15 +60,8 @@ export default function CaseSubmissionForm() {
 
   const resetForm = () => {
     setSuccess(false);
-    setFormData({
-      dentistName: '',
-      clinicEmail: '',
-      patientName: '',
-      caseType: 'Crowding',
-      stlFileUrl: '',
-      customNotes: '',
-    });
-    setSubmitPercent(0);
+    setError('');
+    setFormData(initialFormData);
   };
 
   return (
@@ -109,6 +123,7 @@ export default function CaseSubmissionForm() {
             <div>
               <label className={labelClass}>Case type *</label>
               <select
+                required
                 value={formData.caseType}
                 onChange={(e) => setFormData((p) => ({ ...p, caseType: e.target.value }))}
                 className={inputClass}
@@ -148,25 +163,21 @@ export default function CaseSubmissionForm() {
             />
           </div>
 
+          {error && (
+            <div className="flex items-start gap-3 rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700">
+              <AlertCircle size={18} className="shrink-0 mt-0.5" />
+              <p>{error}</p>
+            </div>
+          )}
+
           <div>
-            {isSubmitting ? (
-              <div className="space-y-2">
-                <div className="flex justify-between text-xs text-ink">
-                  <span className="font-semibold">Processing...</span>
-                  <span className="font-mono text-mint-600">{submitPercent}%</span>
-                </div>
-                <div className="w-full bg-mint-100 h-2 rounded-full overflow-hidden">
-                  <div className="bg-mint-500 h-full transition-all" style={{ width: `${submitPercent}%` }} />
-                </div>
-              </div>
-            ) : (
-              <button
-                type="submit"
-                className="w-full bg-ink text-white py-4 rounded-2xl font-semibold hover:bg-ink/90 transition-all active:scale-[0.98]"
-              >
-                Submit case for analysis
-              </button>
-            )}
+            <button
+              type="submit"
+              disabled={isSubmitting}
+              className="w-full bg-ink text-white py-4 rounded-2xl font-semibold hover:bg-ink/90 transition-all active:scale-[0.98] disabled:opacity-60 disabled:cursor-not-allowed"
+            >
+              {isSubmitting ? 'Sending...' : 'Submit case for analysis'}
+            </button>
           </div>
         </form>
       )}
