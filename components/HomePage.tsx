@@ -1,14 +1,17 @@
+'use client';
+
 import { Zap, Camera, Quote } from 'lucide-react';
-import { motion, useScroll, useTransform } from 'motion/react';
-import Navbar from './components/Navbar';
-import Footer from './components/Footer';
-import Hero from './components/Hero';
-import HeroStats from './components/HeroStats';
-import SectionHeading from './components/SectionHeading';
-import OrthodonticSolutions from './components/OrthodonticSolutions';
-import CaseSubmissionForm from './components/CaseSubmissionForm';
-import TreatableCases from './components/TreatableCases';
-// import WhyChooseUs from './components/WhyChooseUs';
+import { motion } from 'motion/react';
+import Navbar from '@/components/Navbar';
+import Footer from '@/components/Footer';
+import Hero from '@/components/Hero';
+import HeroStats from '@/components/HeroStats';
+import SectionHeading from '@/components/SectionHeading';
+import OrthodonticSolutions from '@/components/OrthodonticSolutions';
+import CaseSubmissionForm from '@/components/CaseSubmissionForm';
+import TreatableCases from '@/components/TreatableCases';
+import ScrollProgress from '@/components/ScrollProgress';
+// import WhyChooseUs from '@/components/WhyChooseUs';
 
 const steps = [
   { num: '01', title: '3D Digital Scan', desc: 'No messy impressions. Thousands of depth points map your teeth in under 3 minutes.' },
@@ -23,15 +26,10 @@ const testimonials = [
   { name: 'David K.', city: 'Miami, FL', quote: 'Remote monitoring streamlined my check-ups. Transparent pricing and incredible support.', avatar: 'https://i.pravatar.cc/150?u=david1' },
 ];
 
-export default function App() {
-  const { scrollYProgress } = useScroll();
-
+export default function HomePage() {
   return (
     <div className="min-h-screen bg-surface">
-      <motion.div
-        style={{ scaleX: scrollYProgress }}
-        className="fixed top-0 left-0 right-0 h-0.5 bg-gradient-to-r from-mint-400 via-mint-500 to-sky-400 z-[9999] origin-left"
-      />
+      <ScrollProgress />
 
       <Navbar />
       <Hero />
@@ -43,7 +41,6 @@ export default function App() {
 
       <TreatableCases />
 
-      {/* Process */}
       <section id="process" className="py-24 bg-white">
         <div className="max-w-7xl mx-auto px-6">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
@@ -97,7 +94,6 @@ export default function App() {
         </div>
       </section>
 
-      {/* Technology */}
       <section id="technology" className="py-24 bg-ink text-white overflow-hidden relative">
         <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-mint-500/10 rounded-full blur-[120px] pointer-events-none" />
         <div className="max-w-7xl mx-auto px-6 relative">
@@ -147,7 +143,6 @@ export default function App() {
         </div>
       </section>
 
-      {/* Case submission */}
       <section id="submit" className="py-24 bg-mint-50/40 border-y border-mint-100/60">
         <div className="max-w-7xl mx-auto px-6">
           <SectionHeading badge="For clinics" centered subtitle="Share case details and a public STL file link — our team will prepare a diagnostic evaluation within 24 hours.">
@@ -157,7 +152,6 @@ export default function App() {
         </div>
       </section>
 
-      {/* Testimonials */}
       <section id="testimonials" className="py-24 bg-white">
         <div className="max-w-7xl mx-auto px-6">
           <SectionHeading badge="Patient stories" centered subtitle="Real transformations from patients across the United States.">
@@ -191,7 +185,6 @@ export default function App() {
         </div>
       </section>
 
-      {/* CTA */}
       <section className="py-24">
         <div className="max-w-5xl mx-auto px-6">
           <motion.div

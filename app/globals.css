@@ -48,13 +48,11 @@ body {
   font-family: var(--font-display);
 }
 
-/* Subtle grid pattern for sections */
 .pattern-dots {
   background-image: radial-gradient(circle, color-mix(in srgb, var(--color-mint-500) 12%, transparent) 1px, transparent 1px);
   background-size: 24px 24px;
 }
 
-/* Glass card */
 .glass-card {
   background: color-mix(in srgb, white 72%, transparent);
   backdrop-filter: blur(16px);
@@ -62,7 +60,6 @@ body {
   border: 1px solid color-mix(in srgb, white 80%, var(--color-mint-200));
 }
 
-/* Gradient text */
 .text-gradient-mint {
   background: linear-gradient(135deg, var(--color-mint-600) 0%, var(--color-mint-400) 50%, #38bdf8 100%);
   -webkit-background-clip: text;
@@ -70,7 +67,6 @@ body {
   color: transparent;
 }
 
-/* Hero mesh gradient */
 .hero-mesh {
   background:
     radial-gradient(ellipse 80% 60% at 70% 20%, color-mix(in srgb, var(--color-mint-300) 25%, transparent), transparent),
@@ -78,7 +74,6 @@ body {
     linear-gradient(180deg, var(--color-mint-50) 0%, var(--color-surface) 55%, white 100%);
 }
 
-/* Aligner shimmer animation */
 @keyframes shimmer {
   0% { background-position: -200% center; }
   100% { background-position: 200% center; }
@@ -95,7 +90,6 @@ body {
   animation: shimmer 4s ease-in-out infinite;
 }
 
-/* Hero product frame */
 .hero-visual-glow {
   background: linear-gradient(
     135deg,

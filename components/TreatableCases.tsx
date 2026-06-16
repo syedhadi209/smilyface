@@ -1,3 +1,5 @@
+'use client';
+
 import { useState } from 'react';
 import { motion, AnimatePresence, LazyMotion, domAnimation } from 'motion/react';
 import { X, Clock, Shield, ArrowRight } from 'lucide-react';
