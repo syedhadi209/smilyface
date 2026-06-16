@@ -64,8 +64,8 @@ export default function Footer() {
               </div>
               <p className="flex items-center gap-3 pt-1">
                 <Mail size={16} className="text-mint-400 shrink-0" />
-                <a href="mailto:hello@smileyfacealigner.com" className="hover:text-mint-300 transition-colors">
-                  hello@smileyfacealigner.com
+                <a href="mailto:smileyfacealigner@gmail.com" className="hover:text-mint-300 transition-colors">
+                  smileyfacealigner@gmail.com
                 </a>
               </p>
             </div>
